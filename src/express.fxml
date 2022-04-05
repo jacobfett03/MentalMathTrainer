@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="frameBorderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="476.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerExpress">
+   <left>
+      <VBox prefHeight="434.0" prefWidth="174.0" style="-fx-background-color: #7FBE9D;" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#express" prefHeight="40.0" prefWidth="172.0" stylesheets="@application.css" text="Express" textFill="WHITE" />
+            <Button fx:id="mainMult" mnemonicParsing="false" onAction="#multiplication" prefHeight="40.0" prefWidth="172.0" stylesheets="@application.css" text="Multiplication" textFill="WHITE" />
+            <Button fx:id="mainAdd" mnemonicParsing="false" onAction="#addition" prefHeight="40.0" prefWidth="172.0" stylesheets="@application.css" text="Addition" textFill="WHITE" />
+            <Button fx:id="mainDiv" mnemonicParsing="false" onAction="#division" prefHeight="40.0" prefWidth="172.0" stylesheets="@application.css" text="Division" textFill="WHITE" />
+            <Button fx:id="mainSub" mnemonicParsing="false" onAction="#subtraction" prefHeight="40.0" prefWidth="172.0" stylesheets="@application.css" text="Subtraction" textFill="WHITE" />
+            <Button fx:id="mainSettings" mnemonicParsing="false" onAction="#settings" prefHeight="40.0" prefWidth="172.0" stylesheets="@application.css" text="Settings" textFill="WHITE" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox prefHeight="44.0" prefWidth="600.0" style="-fx-background-color: #409E6C;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="44.0" prefWidth="260.0" text="Mental Math Trainer" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E2F0E9;" BorderPane.alignment="CENTER">
+         <children>
+            <Line endX="181.0" layoutX="211.0" layoutY="168.0" startX="-93.0" />
+            <Label fx:id="factor1" alignment="CENTER_RIGHT" layoutX="139.0" layoutY="42.0" prefHeight="62.0" prefWidth="254.0" text="123">
+               <font>
+                  <Font name="Caviar Dreams" size="53.0" />
+               </font>
+            </Label>
+            <Label fx:id="factor2" alignment="CENTER_RIGHT" layoutX="178.0" layoutY="104.0" prefHeight="62.0" prefWidth="215.0" text="123">
+               <font>
+                  <Font name="Caviar Dreams" size="53.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfieldAnswerM" alignment="CENTER_RIGHT" layoutX="106.0" layoutY="177.0" onKeyTyped="#checkAnswer" onMouseClicked="#repositionCursor" prefHeight="98.0" prefWidth="305.0" text="?">
+               <font>
+                  <Font name="Caviar Dreams" size="53.0" />
+               </font>
+            </TextField>
+            <Text fx:id="symbol" layoutX="149.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+               <font>
+                  <Font name="Caviar Dreams" size="53.0" />
+               </font>
+            </Text>
+            <Label fx:id="labelCorrect" layoutX="180.0" layoutY="275.0" text="Correct!" textFill="#409e6c" visible="false">
+               <font>
+                  <Font name="Caviar Dreams" size="43.0" />
+               </font>
+            </Label>
+            <Label fx:id="timeElapsed" layoutX="168.0" layoutY="325.0" text="Time Elapsed: 0.0 Seconds" textFill="#409e6c" visible="false">
+               <font>
+                  <Font name="Caviar Dreams" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="363.0" layoutY="338.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="153.0" styleClass="buttonRound1" stylesheets="@application.css" text="Show Solution">
+               <font>
+                  <Font name="Caviar Dreams" size="19.0" />
+               </font>
+            </Button>
+            <ScrollPane fx:id="solutionBox" disable="true" layoutX="112.0" layoutY="73.0" prefHeight="231.0" prefWidth="293.0" visible="false" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

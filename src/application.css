@@ -1,0 +1,32 @@
+.button
+{
+	-fx-background-color : #7FBE9D;
+	-fx-background-radius : 0 0 0 0;
+}
+.button:hover
+{
+	-fx-background-color : #A9D3BD;
+	-fx-background-radius : 0 0 0 0;
+}
+
+.buttonRound1
+{
+	-fx-background-color : #409E6C;
+	-fx-background-radius : 30 0 0 30;
+}
+.buttonRound1:hover
+{
+	-fx-background-color : #7FBE9D;
+	-fx-background-radius : 30 0 0 30;
+}
+
+.buttonReset
+{
+	-fx-background-color : #FD5555;
+	-fx-background-radius : 0 0 0 0;
+}
+.buttonReset:hover
+{
+	-fx-background-color : #FD8D8D;
+	-fx-background-radius : 0 0 0 0;
+}
