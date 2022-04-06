@@ -4,12 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-
-//import javafx.concurrent;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
-//import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,25 +17,12 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-//import java.util.concurrent.ExecutorService;
-//import java.util.concurrent.Executors;
-
 import javafx.application.Platform;
-//import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-//import javafx.scene.Node;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-//import javafx.scene.control.Label;
-//import javafx.scene.control.TextField;
-//import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-//import javafx.stage.Stage;
 public class ControllerExpress extends Controller implements Initializable{
 	@FXML
 	private Label factor1;
@@ -82,9 +66,6 @@ public class ControllerExpress extends Controller implements Initializable{
 	
 	DecimalFormat format = new DecimalFormat("0.#");
 	
-	//private Stage stage;
-	//private Scene scene;
-	
 	public void setDigits(int complexity) {
 		
 		//++complexity;
@@ -99,15 +80,7 @@ public class ControllerExpress extends Controller implements Initializable{
 			dig1 = complexity - dig2;
 			fac1 = getRandomNumber(dig1);
 			fac2 = getRandomNumber(dig2);
-			answer = fac1 * fac2;
-			
-			System.out.println("Multiplication: ");
-			System.out.println("dig1: " + dig1);
-			System.out.println("dig2: " + dig2);
-			System.out.println("fac1: " + fac1);
-			System.out.println("fac2: " + fac2);
-			System.out.println("complexity: " + complexity);
-			System.out.println("level: " + level);
+			answer = fac1 * fac2;		
 			
 			factor1.setText(Integer.toString(fac1));
 			factor2.setText(Integer.toString(fac2));
@@ -123,15 +96,7 @@ public class ControllerExpress extends Controller implements Initializable{
 			dig1 = complexity - dig2;
 			fac1 = getRandomNumber(dig1);
 			fac2 = getRandomNumber(dig2);
-			///*
-			System.out.println("Addition: ");
-			System.out.println("dig1: " + dig1);
-			System.out.println("dig2: " + dig2);
-			System.out.println("fac1: " + fac1);
-			System.out.println("fac2: " + fac2);
-			System.out.println("complexity: " + complexity);
-			System.out.println("level: " + level);
-			//*/
+
 			answer = fac1 + fac2;
 
 			factor1.setText(Integer.toString(fac1));
@@ -154,16 +119,6 @@ public class ControllerExpress extends Controller implements Initializable{
 				fac2 = temp;
 			}
 			answer = fac1 - fac2;
-
-			
-			System.out.println("Subtraction: ");
-			System.out.println("dig1: " + dig1);
-			System.out.println("dig2: " + dig2);
-			System.out.println("fac1: " + fac1);
-			System.out.println("fac2: " + fac2);
-			System.out.println("complexity: " + complexity);
-			System.out.println("level: " + level);
-			
 			
 			factor1.setText(Integer.toString(fac1));
 			factor2.setText(Integer.toString(fac2));
@@ -173,8 +128,8 @@ public class ControllerExpress extends Controller implements Initializable{
 			if (complexity > 6) {
 				complexity = 6;
 			}
-			System.out.println(complexity);
-			symbol.setText("÷");
+			//System.out.println(complexity);
+			symbol.setText("Ã·");
 			//symbol.setStyle("-fx-font: 96");
 			dig2 = 1;
 			if (complexity > 4) {
@@ -194,16 +149,7 @@ public class ControllerExpress extends Controller implements Initializable{
 			fac2 = ControllerDiv.getDivisor(answer, dig2, dig1);
 			
 			fac1 = answer * fac2;
-			///*
-			System.out.println("Division: ");
-			System.out.println("dig1: " + dig1);
-			System.out.println("dig2: " + dig2);
-			System.out.println("fac1: " + fac1);
-			System.out.println("fac2: " + fac2);
-			System.out.println("complexity: " + complexity);
-			System.out.println("level: " + level);
-			//*/
-
+			
 			factor1.setText(Integer.toString(fac1));
 			factor2.setText(Integer.toString(fac2));
 		}
@@ -217,7 +163,7 @@ public class ControllerExpress extends Controller implements Initializable{
 	
 	@FXML
 	void newProblem() {
-		System.out.println("------------------------------");
+
 		//level = 1
 		tfieldAnswerM.setText(Integer.toString(answer));
 		//System.out.println(tfieldAnswerM.getText());
@@ -240,37 +186,37 @@ public class ControllerExpress extends Controller implements Initializable{
 			Random rand = new Random();
 			try {
 				if (problemType == 0) {
-					System.out.println("Max Level M: " + data.playerMaxLevelM);
+					//System.out.println("Max Level M: " + data.playerMaxLevelM);
 					//level = rand.nextInt(data.playerMaxLevelM) + 2;
 					//level = (int)Math.floor(Math.random()*(data.playerMaxLevelM - 2 + 1)+2);
 					level = rand.nextInt(data.playerMaxLevelM - 1, data.playerMaxLevelM + 1);
-					System.out.println("Level M: " + level);
+					//System.out.println("Level M: " + level);
 					maxLevel = data.playerMaxLevelM;
 				} else if (problemType == 1) {
-					System.out.println("Max Level A: " + data.playerMaxLevelA);
+					//System.out.println("Max Level A: " + data.playerMaxLevelA);
 					//level = rand.nextInt(data.playerMaxLevelA) + 2;
 					//level = (int)Math.floor(Math.random()*(data.playerMaxLevelA - 2 + 1)+2);
 					level = rand.nextInt(data.playerMaxLevelA - 1, data.playerMaxLevelA + 1);
-					System.out.println("Level A: " + level);
+					//System.out.println("Level A: " + level);
 					maxLevel = data.playerMaxLevelS;
 				} else if (problemType == 2) {
 					System.out.println("Max Level S: " + data.playerMaxLevelS);
 					//level = rand.nextInt(data.playerMaxLevelS) + 2;
 					//level = (int)Math.floor(Math.random()*(data.playerMaxLevelS - 2 + 1)+2);
 					level = rand.nextInt(data.playerMaxLevelS - 1, data.playerMaxLevelS + 1);
-					System.out.println("Level S: " + level);
+					//System.out.println("Level S: " + level);
 					maxLevel = data.playerMaxLevelS;
 				} else if (problemType == 3) {
-					System.out.println("Max Level D: " + data.playerMaxLevelD);
+					//System.out.println("Max Level D: " + data.playerMaxLevelD);
 					//level = rand.nextInt(data.playerMaxLevelD) + 2;
 					//level = (int)Math.floor(Math.random()*(data.playerMaxLevelD - 2 + 1)+2);
 					level = rand.nextInt(data.playerMaxLevelD - 1, data.playerMaxLevelD + 1);
-					System.out.println("Level D: " + level);
+					//System.out.println("Level D: " + level);
 					maxLevel = data.playerMaxLevelD;
 				}
 			} catch (Exception e) {
-				System.out.println(e);
-				System.out.println("Error reading file");
+				//System.out.println(e);
+				//System.out.println("Error reading file");
 			}
 			
 			
@@ -331,7 +277,7 @@ public class ControllerExpress extends Controller implements Initializable{
 				//System.out.println(timeFinish / 1000);
 				//System.out.println(timeFinish - timeStart);
 				time = ((Math.round((timeFinish - timeStart) / 100.0)) / 10.0);
-				System.out.println("Time: " + time);
+				//System.out.println("Time: " + time);
 				labelCorrect.setVisible(true);
 				timeElapsed.setText(String.format("Time Elapsed: %s seconds\n", (format.format(time))));
 				timeElapsed.setVisible(true);
@@ -385,36 +331,6 @@ public class ControllerExpress extends Controller implements Initializable{
 							} catch(IOException e) {
 						System.out.println(e);
 							}
-					/*if ((backLevel > maxLevel) & (maxLevel >= 2)) {
-						try { //save
-							FileOutputStream fos = new FileOutputStream("C:\\Program Files (x86)\\MentalMathTrainer\\save.dat");
-							BufferedOutputStream bos = new BufferedOutputStream(fos);
-							ObjectOutputStream oos = new ObjectOutputStream(bos);
-						System.out.println("backLevel = " + backLevel);
-						if (problemType == 0) {
-							data.playerMaxLevelM = backLevel;
-							} else if (problemType == 1) {
-								data.playerMaxLevelA = backLevel;
-							} else if (problemType == 2) {
-								data.playerMaxLevelS = backLevel;
-							} else if (problemType == 3) {
-								data.playerMaxLevelD = backLevel;
-							}
-						backLevel = 2;
-						
-					
-					
-					oos.writeObject(data);
-					oos.close();
-						} catch(IOException e) {
-					System.out.println(e);
-				}
-			} */
-				//Timer timer = new Timer();
-				//tfieldAnswerM.clear();
-				//Caller caller = new Caller();
-				
-				//caller.run();
 				try {
 					Timer timer = new Timer();
 					timer.schedule(new TimerTask() {
