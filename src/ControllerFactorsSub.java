@@ -12,7 +12,6 @@ import javafx.scene.Node;
 
 public class ControllerFactorsSub extends Controller {
 	
-	
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -68,7 +67,6 @@ public class ControllerFactorsSub extends Controller {
 	
 	public void setDigit1(int number) {
 		fac1digits = number;
-		//System.out.println(fac1digits);
 	}
 	public void setDigit2(int number) {
 		fac2digits = number;
@@ -100,7 +98,7 @@ public void goToSubProblem(ActionEvent event) throws IOException {
 
 
 public void subtractionCheckBox(ActionEvent event) throws IOException {
-	//System.out.println(settings.getSettingOp());	
+	
 	
 	if (fac1_1.isSelected()) {
 		fac1_2.setDisable(true);
@@ -234,11 +232,8 @@ public void subtractionCheckBox(ActionEvent event) throws IOException {
 		
 		if (digit1 && digit2) {
 			buttonContinue.setDisable(false);
-			//dig1 = fac1digits;
-			//dig2 = fac2digits;
 		} else { 
 			buttonContinue.setDisable(true);
 		}
-	
  }
 }

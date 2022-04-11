@@ -1,23 +1,15 @@
 package application;
 
-//import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.ResourceBundle;
-
-//import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-//import javafx.scene.Node;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-//import javafx.stage.Stage;
 
 public class ControllerDiv extends Controller implements Initializable{
 	@FXML
@@ -39,33 +31,19 @@ public class ControllerDiv extends Controller implements Initializable{
 	int timeStart;
 	int timeFinish;
 	double time;
-
 	DecimalFormat format = new DecimalFormat("0.#");
-	
-	
-	//private Stage stage;
-	//private Scene scene;
-
 
 	public void setDigit(int digit1, int digit2) {
-		
-
-		
 		if (digit2 > digit1) {
 			int temp;
 			temp = digit2;
 			digit2 = digit1;
 			digit1 = temp;
-			
 		}
 		dig1 = digit1;
 		dig2 = digit2;
-
 		quotient = getRandomNumber((digit1 - digit2)) + 1;
-
-
 		divisor = getDivisor(quotient, digit2, digit1);
-		
 		dividend = divisor * quotient;
 		factor1.setText(Integer.toString(dividend));
 		factor2.setText(Integer.toString(divisor));
@@ -89,7 +67,6 @@ public class ControllerDiv extends Controller implements Initializable{
 	
 	@FXML
 	 void checkAnswer(KeyEvent event) {
-		
 		if (event.getCode().equals(KeyCode.ENTER)) {
 			newProblem();
 		}
@@ -101,35 +78,20 @@ public class ControllerDiv extends Controller implements Initializable{
 			labelCorrect.setVisible(true);
 			tfieldAnswerM.setEditable(false);
 			timeElapsed.setText(String.format("Time Elasped: %s seconds\n",(format.format(time))));
-			//System.out.printf("Time Elasped: %s seconds\n",(format.format(time)));
 			timeElapsed.setVisible(true);
 		} else {
 			labelCorrect.setVisible(false);
 		}
 	}
-		//System.out.print("hi");
-		
-		/*void checkEnter(KeyEvent event) {
-			//System.out.println("key pressed");
-			if (event.getCode().equals(KeyCode.ENTER)) {
-				newProblem();
-			}
-	}
-	*/
+
 	@FXML
 	void newProblem() {
 		tfieldAnswerM.clear();
-		//tfieldAnswerM.setText("?");
 		setDigit(dig1, dig2);
 		labelCorrect.setVisible(false);
 		tfieldAnswerM.setEditable(true);
-		timeElapsed.setVisible(false);
-		
-		
+		timeElapsed.setVisible(false);		
 	}
-
-
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -138,6 +100,4 @@ public class ControllerDiv extends Controller implements Initializable{
 		factor1.setText(Integer.toString(dig1));
 		factor2.setText(Integer.toString(dig2));
 	}
-	
-	
 }

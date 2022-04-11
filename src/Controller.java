@@ -17,9 +17,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 
-public class Controller {
-	
-	
+public class Controller {	
 	
 	private Stage stage;
 	private Scene scene;
@@ -78,8 +76,8 @@ public class Controller {
 	
 	public void setDigit1(int number) {
 		fac1digits = number;
-		//System.out.println(fac1digits);
 	}
+	
 	public void setDigit2(int number) {
 		fac2digits = number;
 	}
@@ -103,9 +101,7 @@ public class Controller {
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
-		stage.show();
-
-		
+		stage.show();	
 	}
 	public void subtraction(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("subtraction.fxml"));
@@ -127,8 +123,6 @@ public class Controller {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-		//ControllerExpress contE = new ControllerExpress();
-		//contE.newProblem();
 	}
 	public void settings(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
@@ -143,25 +137,6 @@ public class Controller {
     	int number = (int)Math.pow(10, digits - 1) + rand.nextInt((int)(Math.pow(10, digits)) - (int)Math.pow(10, digits - 1));
     	return number;
     }
-/*
-	public void cont(ActionEvent event) throws IOException {
-		if (settings.getSettingOp() == "multiplication") {
-			System.out.println("1 selected");
-			try {
-				goToMultProblem(event);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			}
-		}
-		if (settings.getSettingOp() == "addition") {
-			goToAdditionProblem(event);
-		}
-		else {
-			System.out.println("none selected");
-		}
-	}
-	*/
 	
 	public void goToMultProblem(ActionEvent event) throws IOException {
 		
@@ -172,23 +147,16 @@ public class Controller {
 		root = loader.load();
 		
 		ControllerMult controllerMult = loader.getController();
-		//int num1 = getRandomNumber(digits1);
-		//int num2 = getRandomNumber(digits2);
 		controllerMult.setDigit1(digits1);
 		controllerMult.setDigit2(digits2);
 		
-		//Parent root = FXMLLoader.load(getClass().getResource("multProblem.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-
 	}
 	
-	//int type;
-	
-	public void multiplicationCheckBox(ActionEvent event) throws IOException {
-		//System.out.println(settings.getSettingOp());	
+	public void multiplicationCheckBox(ActionEvent event) throws IOException {	
 		
 		if (fac1_1.isSelected()) {
 			fac1_2.setDisable(true);
@@ -198,7 +166,6 @@ public class Controller {
 			fac1_6.setDisable(true);
 			digit1 = true;
 			setDigit1(1);
-			
 		} else if (fac1_2.isSelected()) {
 			fac1_1.setDisable(true);
 			fac1_3.setDisable(true);
@@ -244,7 +211,6 @@ public class Controller {
 			digit1 = true;
 			setDigit1(6);
 		}
-		
 		if (((!fac1_1.isSelected()) && (!fac1_2.isSelected())&& (!fac1_3.isSelected())&& (!fac1_4.isSelected()) && (!fac1_5.isSelected())&& (!fac1_6.isSelected()))) {
 			fac1_1.setDisable(false);
 			fac1_2.setDisable(false);
@@ -263,7 +229,6 @@ public class Controller {
 				fac2_6.setDisable(true);
 				digit2 = true;
 				fac2digits = 1;
-				
 			} else if (fac2_2.isSelected()) {
 				fac2_1.setDisable(true);
 				fac2_3.setDisable(true);
@@ -322,13 +287,10 @@ public class Controller {
 			
 			if (digit1 && digit2) {
 				buttonContinue.setDisable(false);
-				//dig1 = fac1digits;
-				//dig2 = fac2digits;
 			} else { 
 				buttonContinue.setDisable(true);
 			}
 	}
-	
 	
 	int guess;
 	int timeStart;
@@ -341,10 +303,6 @@ public class Controller {
 	@FXML
 	private Label timeElapsed;
 	DecimalFormat format = new DecimalFormat("0.#");
-	
-	//public void setType(int typee) {
-		//type = typee;
-	//}
 	
 	@FXML
 	void checkAnswer(KeyEvent event) throws InterruptedException {
@@ -371,33 +329,9 @@ public class Controller {
 			newProblem();
 		}
 		guess = Integer.parseInt(tfieldAnswerM.getText());
-	}
-		
-		/*if (type == 1) { //multiplication
-			int answer = num1 * num2;
-			if (answer == guess ) {
-				timeFinish = (int)System.currentTimeMillis();
-				time = ((Math.round((timeFinish - timeStart) / 100.0)) / 10.0);
-				labelCorrect.setVisible(true);
-				tfieldAnswerM.setEditable(false);
-				timeElapsed.setText(String.format("Time Elasped: %s seconds\n",(format.format(time))));
-				//System.out.printf("Time Elasped: %s seconds\n",(format.format(time)));
-				timeElapsed.setVisible(true);
-			} else {
-				labelCorrect.setVisible(false);
-			}
-		}
-		}
-		*/
-		
-	
-	
+	}	
 	 void newProblem() {
 		 
 	 }
-		
-	 
-
-
 }
 

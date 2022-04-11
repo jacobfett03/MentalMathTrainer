@@ -4,7 +4,6 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -30,12 +29,8 @@ public class ControllerMult extends Controller implements Initializable{
 	int num2;
 	int timeStart;
 	int timeFinish;
-	double time;
-	
+	double time;	
 	DecimalFormat format = new DecimalFormat("0.#");
-	
-	
-	
 	
 	public void setDigit1(int digits) {
 		dig1 = digits;
@@ -55,7 +50,6 @@ public class ControllerMult extends Controller implements Initializable{
     	int number = (int)Math.pow(10, digits - 1) + rand.nextInt((int)(Math.pow(10, digits)) - (int)Math.pow(10, digits - 1));
     	return number;
     }
-
 	
 	@FXML
 	 void checkAnswer(KeyEvent event) {
@@ -70,25 +64,14 @@ public class ControllerMult extends Controller implements Initializable{
 			labelCorrect.setVisible(true);
 			tfieldAnswerM.setEditable(false);
 			timeElapsed.setText(String.format("Time Elasped: %s seconds\n",(format.format(time))));
-			//System.out.printf("Time Elasped: %s seconds\n",(format.format(time)));
 			timeElapsed.setVisible(true);
 		} else {
 			labelCorrect.setVisible(false);
 		}
 	}
-		//System.out.print("hi");
-		
-		/*void checkEnter(KeyEvent event) {
-			//System.out.println("key pressed");
-			if (event.getCode().equals(KeyCode.ENTER)) {
-				newProblem();
-			}
-	}
-	*/
 	@FXML
 	void newProblem() {
 		tfieldAnswerM.clear();
-		//tfieldAnswerM.setText("?");
 		setDigit1(dig1);
 		setDigit2(dig2);
 		labelCorrect.setVisible(false);

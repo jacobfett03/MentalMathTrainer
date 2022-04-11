@@ -12,7 +12,6 @@ import javafx.scene.Node;
 
 public class ControllerFactorsAdd extends Controller {
 	
-	
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -58,7 +57,6 @@ public class ControllerFactorsAdd extends Controller {
 	
 	public void setDigit1(int number) {
 		fac1digits = number;
-		//System.out.println(fac1digits);
 	}
 	public void setDigit2(int number) {
 		fac2digits = number;
@@ -68,12 +66,10 @@ public void goToAddProblem(ActionEvent event) throws IOException {
 		
 		int digits1 = fac1digits;
 		int digits2 = fac2digits;
-		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("addProblem.fxml"));
 		root = loader.load();
 		
 		ControllerAdd ControllerAdd = loader.getController();
-
 		ControllerAdd.setDigit1(digits1);
 		ControllerAdd.setDigit2(digits2);
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -86,8 +82,7 @@ public void goToAddProblem(ActionEvent event) throws IOException {
 
 
 public void additionCheckBox(ActionEvent event) throws IOException {
-	//System.out.println(settings.getSettingOp());	
-	
+
 	if (fac1_1.isSelected()) {
 		fac1_2.setDisable(true);
 		fac1_3.setDisable(true);
@@ -95,8 +90,7 @@ public void additionCheckBox(ActionEvent event) throws IOException {
 		fac1_5.setDisable(true);
 		fac1_6.setDisable(true);
 		digit1 = true;
-		setDigit1(1);
-		
+		setDigit1(1);	
 	} else if (fac1_2.isSelected()) {
 		fac1_1.setDisable(true);
 		fac1_3.setDisable(true);
@@ -217,11 +211,8 @@ public void additionCheckBox(ActionEvent event) throws IOException {
 			fac2_6.setDisable(false);
 			digit2 = false;		
 	}
-		
 		if (digit1 && digit2) {
 			buttonContinue.setDisable(false);
-			//dig1 = fac1digits;
-			//dig2 = fac2digits;
 		} else { 
 			buttonContinue.setDisable(true);
 		}

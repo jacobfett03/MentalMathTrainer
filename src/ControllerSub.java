@@ -1,23 +1,15 @@
 package application;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 public class ControllerSub extends Controller implements Initializable{
 	@FXML
@@ -41,38 +33,7 @@ public class ControllerSub extends Controller implements Initializable{
 	double time;
 	boolean negative = false;
 	DecimalFormat format = new DecimalFormat("0.#");
-	private Stage stage;
-	private Scene scene;
-public void multiplication(ActionEvent event) throws IOException {
-	Parent root = FXMLLoader.load(getClass().getResource("multiplication.fxml"));
-	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-	scene = new Scene(root);
-	stage.setScene(scene);
-	stage.show();	
-}
-	public void division(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("division.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
-	public void addition(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("addition.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
 
-		
-	}
-	public void subtraction(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("subtraction.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
 	public void setDigit(int digit1, int digit2, boolean allowNegative) {
 		if (allowNegative) {
 			negative = allowNegative;
@@ -127,19 +88,9 @@ public void multiplication(ActionEvent event) throws IOException {
 			labelCorrect.setVisible(false);
 		}
 	}
-		//System.out.print("hi");
-		
-		/*void checkEnter(KeyEvent event) {
-			//System.out.println("key pressed");
-			if (event.getCode().equals(KeyCode.ENTER)) {
-				newProblem();
-			}
-	}
-	*/
 	@FXML
 	void newProblem() {
 		tfieldAnswerM.clear();
-		//tfieldAnswerM.setText("?");
 		setDigit(dig1, dig2, negative);
 
 		labelCorrect.setVisible(false);

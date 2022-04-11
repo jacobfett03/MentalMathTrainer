@@ -12,7 +12,6 @@ import javafx.scene.Node;
 
 public class ControllerFactorsDiv extends Controller {
 	
-	
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -65,7 +64,6 @@ public class ControllerFactorsDiv extends Controller {
 	
 	public void setDigit1(int number) {
 		fac1digits = number;
-		//System.out.println(fac1digits);
 	}
 	public void setDigit2(int number) {
 		fac2digits = number;
@@ -92,7 +90,6 @@ public void goToDivProblem(ActionEvent event) throws IOException {
 
 
 public void divisionCheckBox(ActionEvent event) throws IOException {
-	//System.out.println(settings.getSettingOp());	
 	
 	if (fac1_1.isSelected()) {
 		fac1_2.setDisable(true);
@@ -101,15 +98,14 @@ public void divisionCheckBox(ActionEvent event) throws IOException {
 		fac1_5.setDisable(true);
 		fac1_6.setDisable(true);
 		digit1 = true;
-		setDigit1(1);
-		
+		setDigit1(1);		
 	} else if (fac1_2.isSelected()) {
 		fac1_1.setDisable(true);
 		fac1_3.setDisable(true);
 		fac1_4.setDisable(true);
 		fac1_5.setDisable(true);
 		fac1_6.setDisable(true);
-		
+	
 		fac2_1.setDisable(false);
 		fac2_2.setDisable(true);
 		fac2_3.setDisable(true);
@@ -255,15 +251,10 @@ public void divisionCheckBox(ActionEvent event) throws IOException {
 			fac2digits = 6;
 		}
 		
-		
-		
 		if (digit1 && digit2) {
 			buttonContinue.setDisable(false);
-			//dig1 = fac1digits;
-			//dig2 = fac2digits;
 		} else { 
 			buttonContinue.setDisable(true);
 		}
-	
  }
 }
