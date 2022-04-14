@@ -76,8 +76,7 @@ public class ControllerMult extends Controller implements Initializable{
 		setDigit2(dig2);
 		labelCorrect.setVisible(false);
 		tfieldAnswerM.setEditable(true);
-		timeElapsed.setVisible(false);
-		
+		timeElapsed.setVisible(false);		
 		
 	}
 

@@ -30,3 +30,14 @@
 	-fx-background-color : #FD8D8D;
 	-fx-background-radius : 0 0 0 0;
 }
+.buttonLogin
+{
+	-fx-background-color : #409E6C;
+	-fx-background-radius : 0 0 0 0;
+}
+
+.buttonLogin:hover
+{
+	-fx-background-color : #7FBE9D;
+	-fx-background-radius : 0 0 0 0;
+}

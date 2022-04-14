@@ -11,7 +11,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+
+			Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 			Scene scene = new Scene(root,Color.BEIGE);
 			
 			stage.setTitle("Mental Math Trainer");

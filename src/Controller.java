@@ -1,8 +1,14 @@
 package application;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Random;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
@@ -17,7 +23,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 
-public class Controller {	
+public class Controller implements Initializable {	
 	
 	private Stage stage;
 	private Scene scene;
@@ -58,6 +64,8 @@ public class Controller {
 	private Button mainSub;
 	@FXML
 	private TextField tfieldAnswerM;
+	@FXML
+	private Label LabelWelcome;
 	boolean digit1;
 	boolean digit2;
 	int fac1digits;
@@ -333,5 +341,24 @@ public class Controller {
 	 void newProblem() {
 		 
 	 }
-}
 
+	 
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		try {
+			FileInputStream fis = new FileInputStream("C:\\Program Files (x86)\\MentalMathTrainer\\temp.dat");
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			CurrentUser currentUser = new CurrentUser();
+			currentUser = (CurrentUser)ois.readObject();
+			
+			if (currentUser.loggedIn) {
+				LabelWelcome.setText("Welcome, " + currentUser.username);
+			}
+		
+	} catch (Exception e) {
+	}
+  }
+}
