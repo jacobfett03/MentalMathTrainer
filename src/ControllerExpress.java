@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -23,7 +26,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-
+//REMINDER: SHOW SOLUTION BUTTON IS INVISIBLE-------------------------------------------------------------------------------------------------------------------------------------------------
 public class ControllerExpress extends Controller implements Initializable{
 	@FXML
 	private Label factor1;
@@ -59,9 +62,32 @@ public class ControllerExpress extends Controller implements Initializable{
 	int answer;
 	int type;
 	int problemType; // 0=mult 1=add 2=sub 3=div
+	boolean loggedIn = false;
 	Data data = new Data();
 	DecimalFormat format = new DecimalFormat("0.#");
-
+	CurrentUser currentUser = new CurrentUser();
+	DatabaseConnection connect = new DatabaseConnection();
+	Connection connectDB = connect.getConnection();
+	
+	public boolean getLoginStatus() {
+		try {
+			FileInputStream fis = new FileInputStream("C:\\Program Files (x86)\\MentalMathTrainer\\temp.dat");
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			currentUser = (CurrentUser)ois.readObject();
+			
+			if (currentUser.loggedIn) {
+				loggedIn = true;
+			} else {
+				loggedIn = false;
+			}	
+		} catch (Exception e) {
+			
+		}
+		return loggedIn;		
+	}
+	
 	public void setDigits(int complexity) {
 		if (problemType == 0) {    //multiplication
 			symbol.setText("X");
@@ -146,11 +172,6 @@ public class ControllerExpress extends Controller implements Initializable{
 		labelCorrect.setVisible(false);
 		timeElapsed.setVisible(false);
 		try {
-			FileInputStream fis = new FileInputStream("C:\\Program Files (x86)\\MentalMathTrainer\\save.dat");
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			ObjectInputStream ois = new ObjectInputStream(bis);
-			
-			data = (Data)ois.readObject();
 			getProblemType();
 			Random rand = new Random();
 			try {
@@ -174,11 +195,8 @@ public class ControllerExpress extends Controller implements Initializable{
 			}
 			if (maxLevel < 2 ) {
 				maxLevel = 2;
-			}
-			ois.close();			
-		}catch(IOException ex) {
-			ex.printStackTrace();
-		}catch(ClassNotFoundException ex) {
+			}			
+		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
 		setDigits(maxLevel);
@@ -235,33 +253,27 @@ public class ControllerExpress extends Controller implements Initializable{
 					if (correctInARowM >= 5) {
 						correctInARowM = 0;
 						data.playerMaxLevelM++;
+						updateStats();
 					}
 					if (correctInARowA >= 5) {
 						++backLevel;
 						correctInARowA = 0;
 						data.playerMaxLevelA++;
+						updateStats();
 					}
 					if (correctInARowS >= 5) {
 						++backLevel;
 						correctInARowS = 0;
 						data.playerMaxLevelS++;
+						updateStats();
 					}
 					if (correctInARowD >= 5) {
 						++backLevel;
 						correctInARowD = 0;
 						data.playerMaxLevelD++;
+						updateStats();
 					}
-				
-					try { //save
-						FileOutputStream fos = new FileOutputStream("C:\\Program Files (x86)\\MentalMathTrainer\\save.dat");
-						BufferedOutputStream bos = new BufferedOutputStream(fos);
-						ObjectOutputStream oos = new ObjectOutputStream(bos);
-						
-						oos.writeObject(data);
-						oos.close();
-							} catch(IOException e) {
-						System.out.println(e);
-							}
+
 				try {
 					Timer timer = new Timer();
 					timer.schedule(new TimerTask() {
@@ -295,9 +307,77 @@ public class ControllerExpress extends Controller implements Initializable{
 	public void solution() {
 		
 	}
+	
+	public void updateStats() {
+		try { //save to database
+			FileInputStream fis = new FileInputStream("C:\\Program Files (x86)\\MentalMathTrainer\\temp.dat");
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			currentUser = (CurrentUser)ois.readObject();
+			
+			if (currentUser.loggedIn) {
+				
+				String updateLevel = "UPDATE users SET levelM = '" + data.playerMaxLevelM + "', levelA = '" + data.playerMaxLevelA + "', levelD = '" 
+				+ data.playerMaxLevelD + "', levelS = '" + data.playerMaxLevelS + "' WHERE username='" + currentUser.username + "';";
+				
+				Statement statement = connectDB.createStatement();
+				statement.executeUpdate(updateLevel);
+				System.out.println("level updated");
+			} else {
+				try { //save to machine
+					FileOutputStream fos = new FileOutputStream("C:\\Program Files (x86)\\MentalMathTrainer\\save.dat");
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					ObjectOutputStream oos = new ObjectOutputStream(bos);
+					oos.writeObject(data);
+					oos.close();
+						} catch(Exception e) {
+					System.out.println(e);
+						}
+			}
+		} catch (Exception e) {
+			
+		}
+	}
+	
+	public void importStatsFromDatabase() {
+		String getLevel = "SELECT levelM, levelD, levelA, levelS FROM users WHERE username='" + currentUser.username + "';";
+		
+		try {
+			Statement statement = connectDB.createStatement();
+			ResultSet queryResult = statement.executeQuery(getLevel);
+			queryResult.next();
+			data.playerMaxLevelM = queryResult.getInt("levelM");
+			data.playerMaxLevelA = queryResult.getInt("levelA");
+			data.playerMaxLevelD = queryResult.getInt("levelD");
+			data.playerMaxLevelS = queryResult.getInt("levelS");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		//SELECT levelM, levelD, levelA, levelS FROM users WHERE username='jacobfett21';
+	}
+	
+	public void importStatsFromMachine() {
+		try {
+			FileInputStream fis = new FileInputStream("C:\\Program Files (x86)\\MentalMathTrainer\\save.dat");
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			data = (Data)ois.readObject();
+		} catch (Exception e) {
+			
+		}
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		if (getLoginStatus()) {
+			importStatsFromDatabase();
+		} else {
+			importStatsFromMachine();
+		}
 		newProblem();
 	}
 }
